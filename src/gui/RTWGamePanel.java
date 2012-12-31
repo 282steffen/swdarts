@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,14 +23,17 @@ import app.RTWGame;
 public class RTWGamePanel extends JPanel implements ActionListener, KeyListener {
 
     private static RTWGamePanel instance_;
+    String[] strategies = { "simple", "big", "small", "double", "triple" };
     JLabel dartsNeededDescriptionLabel = new JLabel("Benötigte Darts");
     JTextField dartsNeededField = new JTextField("1");
-    JTable statsTable = new JTable(24, 4);
+    JTable statsTable = new JTable(24, 3);
     JScrollPane statsPane = new JScrollPane(statsTable);
+    JComboBox<String> strategySelector = new JComboBox<String>(strategies);
 
+    JButton startButton = new JButton("Spiel starten");
     JButton submitButton = new JButton("OK");
     JLabel toThrowDescriptionLabel = new JLabel("Ziel");
-    JLabel toThrowLabel = new JLabel("Große 1");
+    JLabel toThrowLabel = new JLabel("");
 
     private RTWGamePanel() {
 	setLayout();
@@ -38,6 +42,8 @@ public class RTWGamePanel extends JPanel implements ActionListener, KeyListener 
 
     private void registerActionsListeners() {
 	submitButton.addActionListener(this);
+	dartsNeededField.addKeyListener(this);
+	startButton.addActionListener(this);
     }
 
     public static RTWGamePanel getInstance() {
@@ -63,21 +69,28 @@ public class RTWGamePanel extends JPanel implements ActionListener, KeyListener 
 	gbc.gridx = 0;
 	gbc.gridy = 0;
 	gbc.ipadx = 100;
-	this.add(toThrowDescriptionLabel, gbc);
+	this.add(strategySelector, gbc);
 	gbc.gridx = 1;
 	gbc.gridy = 0;
-	this.add(dartsNeededDescriptionLabel, gbc);
+	this.add(startButton, gbc);
+
 	gbc.gridx = 0;
 	gbc.gridy = 1;
-	this.add(toThrowLabel, gbc);
+	this.add(toThrowDescriptionLabel, gbc);
 	gbc.gridx = 1;
 	gbc.gridy = 1;
-	this.add(dartsNeededField, gbc);
-	gbc.gridx = 2;
-	gbc.gridy = 1;
-	this.add(submitButton, gbc);
+	this.add(dartsNeededDescriptionLabel, gbc);
 	gbc.gridx = 0;
 	gbc.gridy = 2;
+	this.add(toThrowLabel, gbc);
+	gbc.gridx = 1;
+	gbc.gridy = 2;
+	this.add(dartsNeededField, gbc);
+	gbc.gridx = 2;
+	gbc.gridy = 2;
+	this.add(submitButton, gbc);
+	gbc.gridx = 0;
+	gbc.gridy = 3;
 	gbc.gridwidth = 3;
 	this.add(statsPane, gbc);
 
@@ -90,34 +103,50 @@ public class RTWGamePanel extends JPanel implements ActionListener, KeyListener 
     @Override
     public void actionPerformed(ActionEvent e) {
 	if (e.getSource() == submitButton) {
+
 	    sendThrow();
+	}
+	if (e.getSource() == startButton) {
+	    if (!RTWGame.getInstance().getIsStarted()) {
+		String strategy = strategySelector.getSelectedItem().toString();
+		RTWGame.getInstance().start(strategy);
+	    }
 	}
 
     }
 
     private void sendThrow() {
-	List<Integer> values = new ArrayList<Integer>();
-	Integer dartsNeeded = Integer.parseInt(dartsNeededField.getText());
-	values.add(dartsNeeded);
-	RTWGame.getInstance().dartsThrown(values);
-    }
+	try {
+	    List<Integer> values = new ArrayList<Integer>();
+	    Integer dartsNeeded = Integer.parseInt(dartsNeededField.getText());
+	    values.add(dartsNeeded);
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-	if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-	    sendThrow();
+	    RTWGame.getInstance().dartsThrown(values);
+	} catch (NumberFormatException E) {
+	    System.out.println("Only Number accepted");
 	}
     }
 
     @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
     public void keyPressed(KeyEvent e) {
-	// TODO Auto-generated method stub
+	if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+	    sendThrow();
+	}
 
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 	// TODO Auto-generated method stub
+
+    }
+
+    public void displayStats(List<Double> values) {
 
     }
 
