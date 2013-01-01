@@ -23,7 +23,6 @@ public class RTWStrategySimple extends RTWStrategyAbstract {
 
     @Override
     public void passThrowToDatabase(List<Integer> values) {
-	System.out.println("HAIL SATAN");
 	String gameName = "RTWSIMPLE";
 	data.addGame(gameName, values);
     }

@@ -1,4 +1,5 @@
 package data;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -135,7 +136,7 @@ public class DataController {
 
     }
 
-    public void calculateGameStats(String gameName) {
+    public List<Double> calculateGameStats(String gameName) {
 	List<Double> stats = new ArrayList<Double>();
 	int counter = 0;
 
@@ -166,12 +167,11 @@ public class DataController {
 		stats.set(i, stats.get(i)/counter);
 	    }
 
-
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
+	return stats;
     }
-    PreparedStatement pstmt = null;
 
 
 }

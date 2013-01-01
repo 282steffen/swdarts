@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Tue Jan 01 00:31:24 CET 2013:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-013b-f34e-29aa-000000437148 
-on database directory /Users/steffenwitt/swdarts/swdarts_dev  with class loader sun.misc.Launcher$AppClassLoader@64cbbe37 
+Tue Jan 01 20:00:22 CET 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-013b-f77c-60f0-000003ad78c8 
+on database directory /Users/steffenwitt/swdarts/swdarts_dev  with class loader sun.misc.Launcher$AppClassLoader@39fba2af 
 Loaded from file:/Users/steffenwitt/swdarts/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_09-b05

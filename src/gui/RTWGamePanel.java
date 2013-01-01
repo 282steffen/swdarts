@@ -11,11 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import app.RTWGame;
@@ -23,14 +20,10 @@ import app.RTWGame;
 public class RTWGamePanel extends JPanel implements ActionListener, KeyListener {
 
     private static RTWGamePanel instance_;
-    String[] strategies = { "simple", "big", "small", "double", "triple" };
+
     JLabel dartsNeededDescriptionLabel = new JLabel("Benötigte Darts");
     JTextField dartsNeededField = new JTextField("1");
-    JTable statsTable = new JTable(24, 3);
-    JScrollPane statsPane = new JScrollPane(statsTable);
-    JComboBox<String> strategySelector = new JComboBox<String>(strategies);
 
-    JButton startButton = new JButton("Spiel starten");
     JButton submitButton = new JButton("OK");
     JLabel toThrowDescriptionLabel = new JLabel("Ziel");
     JLabel toThrowLabel = new JLabel("");
@@ -43,7 +36,6 @@ public class RTWGamePanel extends JPanel implements ActionListener, KeyListener 
     private void registerActionsListeners() {
 	submitButton.addActionListener(this);
 	dartsNeededField.addKeyListener(this);
-	startButton.addActionListener(this);
     }
 
     public static RTWGamePanel getInstance() {
@@ -66,33 +58,24 @@ public class RTWGamePanel extends JPanel implements ActionListener, KeyListener 
 		curFont.getStyle(), 42));
 	toThrowLabel.setFont(new Font(curFont.getFontName(),
 		curFont.getStyle(), 42));
+
 	gbc.gridx = 0;
 	gbc.gridy = 0;
 	gbc.ipadx = 100;
-	this.add(strategySelector, gbc);
-	gbc.gridx = 1;
-	gbc.gridy = 0;
-	this.add(startButton, gbc);
-
-	gbc.gridx = 0;
-	gbc.gridy = 1;
 	this.add(toThrowDescriptionLabel, gbc);
 	gbc.gridx = 1;
-	gbc.gridy = 1;
+	gbc.gridy = 0;
 	this.add(dartsNeededDescriptionLabel, gbc);
 	gbc.gridx = 0;
-	gbc.gridy = 2;
+	gbc.gridy = 1;
 	this.add(toThrowLabel, gbc);
 	gbc.gridx = 1;
-	gbc.gridy = 2;
+	gbc.gridy = 1;
 	this.add(dartsNeededField, gbc);
 	gbc.gridx = 2;
-	gbc.gridy = 2;
+	gbc.gridy = 1;
 	this.add(submitButton, gbc);
-	gbc.gridx = 0;
-	gbc.gridy = 3;
-	gbc.gridwidth = 3;
-	this.add(statsPane, gbc);
+
 
     }
 
@@ -106,12 +89,7 @@ public class RTWGamePanel extends JPanel implements ActionListener, KeyListener 
 
 	    sendThrow();
 	}
-	if (e.getSource() == startButton) {
-	    if (!RTWGame.getInstance().getIsStarted()) {
-		String strategy = strategySelector.getSelectedItem().toString();
-		RTWGame.getInstance().start(strategy);
-	    }
-	}
+
 
     }
 
@@ -146,8 +124,5 @@ public class RTWGamePanel extends JPanel implements ActionListener, KeyListener 
 
     }
 
-    public void displayStats(List<Double> values) {
-
-    }
 
 }

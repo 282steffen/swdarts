@@ -5,6 +5,8 @@ import gui.RTWGamePanel;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.RTWStrategy.strategies;
+
 public class RTWGame implements Game {
 
     private static RTWGame instance_;
@@ -41,21 +43,26 @@ public class RTWGame implements Game {
 	return isStarted;
     }
 
-    public void start(String strategy) {
-	if (strategy.equals("simple")) {
+    public void start(strategies strategy) {
+	if (strategy.equals(strategies.SIMPLE)) {
 	    this.strategy = new RTWStrategySimple();
+	    // DataController.getInstance().calculateGameStats("RTWSIMPLE");
 	}
-	if (strategy.equals("big")) {
+	if (strategy.equals(strategies.BIG)) {
 	    this.strategy = new RTWStrategyBig();
+	    // DataController.getInstance().calculateGameStats("RTWBIG");
 	}
-	if (strategy.equals("small")) {
+	if (strategy.equals(strategies.SMALL)) {
 	    this.strategy = new RTWStrategySmall();
+	    // DataController.getInstance().calculateGameStats("RTWSMALL");
 	}
-	if (strategy.equals("double")) {
+	if (strategy.equals(strategies.DOUBLE)) {
 	    this.strategy = new RTWStrategyDouble();
+	    // DataController.getInstance().calculateGameStats("RTWDOUBLE");
 	}
-	if (strategy.equals("triple")) {
+	if (strategy.equals(strategies.TRIPLE)) {
 	    this.strategy = new RTWStrategyTriple();
+	    // DataController.getInstance().calculateGameStats("RTWTRIPLE");
 	}
 	panel.updateToThrow(this.strategy.getCurrent());
 

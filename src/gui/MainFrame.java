@@ -16,21 +16,26 @@ public class MainFrame extends JFrame implements ActionListener {
     /**
      * 
      */
+    private static MainFrame instance_;
     private static final long serialVersionUID = 1L;
     private final JPanel rtwPanel = RTWGamePanel.getInstance();
-    private final JPanel startPanel_ = new JPanel();
+    private final JPanel startPanel_ = new GameStartPanel();
     private final JTabbedPane tabPane_ = new JTabbedPane();
 
-    public MainFrame() {
+    private MainFrame() {
 	setFrameProperties();
 	setComponentAttributes();
 	setLayout();
 	registerActionListener();
     }
 
-    public static void main(String[] args) {
-	JFrame test = new MainFrame();
+    public static MainFrame getInstance() {
+	if (instance_ == null) {
+	    instance_ = new MainFrame();
+	}
+	return instance_;
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -71,9 +76,13 @@ public class MainFrame extends JFrame implements ActionListener {
 	contentPanel.add(startPanel_);
 
 	tabPane_.addTab("Start", startPanel_);
-	tabPane_.addTab("RTW", rtwPanel);
 	getContentPane().add(tabPane_);
 
+    }
+
+    public void addRTWGame(){
+	tabPane_.addTab("RTW", RTWGamePanel.getInstance());
+	tabPane_.setSelectedComponent(RTWGamePanel.getInstance());
     }
 
 }
