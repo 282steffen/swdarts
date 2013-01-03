@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import app.RTWGame;
+import com.alee.laf.WebLookAndFeel;
 
 public class RTWGamePanel extends JPanel implements ActionListener, KeyListener {
 
@@ -46,6 +47,7 @@ public class RTWGamePanel extends JPanel implements ActionListener, KeyListener 
     }
 
     private void setLayout() {
+        WebLookAndFeel.install();
 	this.setLayout(new GridBagLayout());
 	GridBagConstraints gbc = new GridBagConstraints();
 	// gbc.fill = GridBagConstraints.BOTH;

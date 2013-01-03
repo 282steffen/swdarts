@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Game {
     public static enum games {
-	RTW
+	RTW,TargetPractice
     };
     public void start();
 

@@ -1,5 +1,7 @@
 package data;
 
+import app.RTWStrategy;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -24,6 +26,7 @@ public class DataController {
     private DataController() {
 	if(conn == null){
 	    conn = createConnection();
+        createTables();
 	}
     }
     private Connection createConnection() {
@@ -52,29 +55,108 @@ public class DataController {
 	}
 	return conn;
     }
+
+    private void createTables(){
+        //RTW Tables
+        String[] rtws = {"RTWSIMPLE","RTWBIG","RTWSMALL","RTWDOUBLE","RTWTRIPLE"};
+        for (String rtw : rtws) {
+            createRTWTable(rtw);
+        }
+    }
+    private void dropTable(String tablename) {
+        if (conn == null) {
+            createConnection();
+            if (conn == null) {
+                return;
+            }
+        }
+        try {
+            if (conn.isClosed()) {
+                conn = createConnection();
+            }
+            Statement stmt = conn.createStatement();
+            String query = "DROP TABLE "+tablename;
+            stmt.executeUpdate(query);
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("42Y55")) {
+                e.printStackTrace();
+            }
+            System.out.println(tablename + " already deleted");
+
+        }
+    }
+    private void createRTWTable(String tablename) {
+        if (conn == null) {
+            createConnection();
+            if (conn == null) {
+                return;
+            }
+        }
+        try {
+            if (conn.isClosed()) {
+                conn = createConnection();
+            }
+            Statement stmt = conn.createStatement();
+            String query = "CREATE TABLE "+tablename+" ("
+                    + "PLAYERNAME VARCHAR(24) NOT NULL , "
+                    + "GAMEID INTEGER NOT NULL PRIMARY KEY, " + "GAMEDATE DATE, "
+                    + "ONE INTEGER, " + "TWO INTEGER, " + "THREE INTEGER, "
+                    + "FOUR INTEGER, " + "FIVE INTEGER, " + "SIX INTEGER, "
+                    + "SEVEN INTEGER, " + "EIGHT INTEGER, " + "NINE INTEGER, "
+                    + "TEN INTEGER, " + "ELEVEN INTEGER, " + "TWELVE INTEGER, "
+                    + "THIRTEEN INTEGER, " + "FOURTEEN INTEGER, "
+                    + "FIVETEEN INTEGER, " + "SIXTEEN INTEGER, "
+                    + "SEVENTEEN INTEGER, " + "EIGHTEEN INTEGER, "
+                    + "NINETEEN INTEGER, " + "TWENTY INTEGER, " + "BULL INTEGER "
+                    + ") ";
+            stmt.executeUpdate(query);
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32")) {
+                e.printStackTrace();
+            }
+            System.out.println(tablename + " already exists");
+
+        }
+    }
+
+    private void createTargetPracticeTable(String tablename) {
+        if (conn == null) {
+            createConnection();
+            if (conn == null) {
+                return;
+            }
+        }
+        try {
+            if (conn.isClosed()) {
+                conn = createConnection();
+            }
+            Statement stmt = conn.createStatement();
+            String query = "CREATE TABLE "+tablename+" ("
+                    + "FIELDNAME VARCHAR(24) NOT NULL PRIMARY KEY, "
+                    + "HITS INTEGER, " + "ROUNDS INTEGER";
+            stmt.executeUpdate(query);
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32")) {
+                e.printStackTrace();
+            }
+            System.out.println(tablename + " already exists");
+
+        }
+    }
+
     public static void main(String[] args) {
 
 
 
 
-	String printLine = "  __________________________________________________";
-	String createString = "CREATE TABLE RTWSIMPLE " + "("
-		+ "PLAYERNAME VARCHAR(24) NOT NULL , "
-		+ "GAMEID INTEGER NOT NULL, " + "GAMEDATE DATE, "
-		+ "ONE INTEGER, " + "TWO INTEGER, " + "THREE INTEGER, "
-		+ "FOUR INTEGER, " + "FIVE INTEGER, " + "SIX INTEGER, "
-		+ "SEVEN INTEGER, " + "EIGHT INTEGER, " + "NINE INTEGER, "
-		+ "TEN INTEGER, " + "ELEVEN INTEGER, " + "TWELVE INTEGER, "
-		+ "THIRTEEN INTEGER, " + "FOURTEEN INTEGER, "
-		+ "FIVETEEN INTEGER, " + "SIXTEEN INTEGER, "
-		+ "SEVENTEEN INTEGER, " + "EIGHTEEN INTEGER, "
-		+ "NINETEEN INTEGER, " + "TWENTY INTEGER, " + "BULL INTEGER "
-		+ ") ";
+
 	String alterTable = "ALTER TABLE RTWSIMPLE ADD CONSTRAINT RTWSIMPLE_PK Primary Key (GAMEID)";
 	String answer;
 
-	DataController dc = new DataController();
-	dc.calculateGameStats("RTWSIMPLE");
+
 
 
     }
@@ -111,7 +193,7 @@ public class DataController {
 	return instance_;
     }
 
-    public void addGame(String gameName, List<Integer> values) {
+    public void addRTWGame(String gameName, List<Integer> values) {
 	PreparedStatement pstmt = null;
 	try {
 	    if (conn == null) {

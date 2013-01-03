@@ -1,5 +1,6 @@
 package app;
 
+import com.alee.laf.WebLookAndFeel;
 import gui.MainFrame;
 import data.DataController;
 
@@ -20,6 +21,7 @@ public class Controller {
 	return instance_;
     }
     public static void main(String[] args) {
+        WebLookAndFeel.install();
 	Controller ctrl = new Controller();
 
     }
@@ -27,6 +29,10 @@ public class Controller {
     public void initiateRTWGame(RTWStrategy.strategies strategy) {
 	RTWGame.getInstance().start(strategy);
 	mf.addRTWGame();
+    }
+
+    public void initiateTargetPractice() {
+        //To change body of created methods use File | Settings | File Templates.
     }
 
     public static enum singleFields {
