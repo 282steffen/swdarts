@@ -2,6 +2,7 @@ package gui;
 
 import app.FiveOOneGame;
 import com.alee.laf.WebLookAndFeel;
+import com.alee.laf.optionpane.WebOptionPane;
 import com.alee.managers.popup.PopupStyle;
 import com.alee.managers.popup.WebPopup;
 
@@ -120,6 +121,11 @@ public class FiveOOnePanel {
                 reactToScoreField(e);
             }
         });
+        newScoreEntry.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldFocusGained(evt);
+            }
+        });
         innerFooPanel.add(newScoreEntry,gbc);
 
         gbc.gridx = 1;
@@ -135,7 +141,7 @@ public class FiveOOnePanel {
         roundIndex++;
         innerFooPanel.add(new JLabel(""+roundIndex*3),gbc);
 
-
+        newScoreEntry.requestFocus();
         addIndexY++;
 
         innerFooPanel.validate();
@@ -151,10 +157,11 @@ public class FiveOOnePanel {
     private boolean checkThrow() {
         try{
             int newScore = Integer.parseInt(scoreFields.get(scoreFields.size()-1).getText());
-            if(newScore < 0 || newScore > 180){
+            if (!associatedGame.checkThrow(newScore)){
                 wrongInputPopup.showPopup(scoreFields.get(scoreFields.size()-1));
                 return false;
-            }else{
+            }
+            else{
                 wrongInputPopup.hidePopup();
                 return true;
 
@@ -179,4 +186,29 @@ public class FiveOOnePanel {
 
     }
 
+    public String askForNofDarts(){
+        return WebOptionPane.showInputDialog(scoreFields.get(scoreFields.size()-1),"Wieviele Darts wurden benötigt? (1-3)");
+    }
+
+    public void gameEnded(double avg, double nineDartAvg) {
+        WebOptionPane.showMessageDialog(scoreFields.get(scoreFields.size()-1),"Spiel mit einem "+avg*3+" 3-Dart-Average und einem "+nineDartAvg+" 9-Dart-Avg beendet.");
+    }
+    private void jTextFieldFocusGained(java.awt.event.FocusEvent evt) {
+        java.awt.Component focusedComponent = evt.getComponent();
+        innerFooPanel.scrollRectToVisible(focusedComponent.getBounds(null));
+        innerFooPanel.repaint();
+    }
+
+    public boolean askForRestart() {
+        int i = WebOptionPane.showConfirmDialog(scoreFields.get(scoreFields.size()-1),"Neues Spiel starten?");
+        if(i == WebOptionPane.YES_OPTION){
+            return true;
+        }
+        return false;
+    }
+
+    public void clear() {
+        instance = null;
+        MainFrame.getInstance().resetFoo();
+    }
 }

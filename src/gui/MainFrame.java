@@ -104,4 +104,9 @@ public class MainFrame extends JFrame implements ActionListener {
         tabPane_.setSelectedComponent(RTWGamePanel.getInstance());
     }
 
+    public void resetFoo() {
+        tabPane_.removeTabAt(3);
+        tabPane_.insertTab("501",null,FiveOOnePanel.getInstance().getFooPanel(),null,3);
+
+    }
 }

@@ -1,5 +1,6 @@
 package gui;
 
+import app.TargetHelper;
 import app.TargetPractice;
 import com.alee.managers.popup.PopupStyle;
 import com.alee.managers.popup.WebPopup;
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,8 +25,10 @@ public class TargetPracticePanel {
     private JPanel targetPracticePanel;
     private JLabel hprTodayLabel;
     private JLabel hprTotalLabel;
-    private JLabel toThrowLabel;
+
     private JLabel hprLabel;
+    private JComboBox targetBox;
+    private JButton beendenButton;
     private TargetPractice associateGame;
     WebPopup wrongInputPopup = new WebPopup();
 
@@ -44,7 +48,20 @@ public class TargetPracticePanel {
                 sendThrow();
             }
         });
-        associateGame = TargetPractice.getInstance();
+        associateGame = new TargetPractice();
+        targetBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                hprLabel.setText("");
+            }
+        });
+        beendenButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                associateGame.saveGame();
+            }
+        });
     }
 
     private void sendThrow() {
@@ -54,8 +71,8 @@ public class TargetPracticePanel {
                 wrongInputPopup.showPopup(okButton);
             }else{
                 wrongInputPopup.hidePopup();
-                associateGame.addThrow(numOfHits);
-                hprLabel.setText(""+associateGame.getHprNow());
+                updateGui(associateGame.addThrow(numOfHits, targetBox.getSelectedItem().toString()));
+
             }
             textField1.setText("");
 
@@ -66,10 +83,14 @@ public class TargetPracticePanel {
         }
     }
 
+    private void updateGui(TargetHelper targetHelper) {
+       DecimalFormat twoDForm = new DecimalFormat("#.##");
+       hprLabel.setText(""+Double.valueOf(twoDForm.format(targetHelper.getHpr())));
+    }
 
 
     public JPanel getTargetPracticePanel() {
-        toThrowLabel.setText("kleine 20");
+
 
         return targetPracticePanel;
     }
@@ -98,11 +119,5 @@ public class TargetPracticePanel {
         this.hprTotalLabel = hprTotalLabel;
     }
 
-    public JLabel getToThrowLabel() {
-        return toThrowLabel;
-    }
 
-    public void setToThrowLabel(JLabel toThrowLabel) {
-        this.toThrowLabel = toThrowLabel;
-    }
 }

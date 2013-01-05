@@ -1,6 +1,7 @@
 package data;
 
 import app.RTWStrategy;
+import app.TargetHelper;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -256,6 +257,8 @@ public class DataController {
     }
 
 
+    public static void saveTPGame(ArrayList<TargetHelper> targetHelperList) {
+    }
 }
 
 

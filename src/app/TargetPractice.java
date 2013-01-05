@@ -1,5 +1,9 @@
 package app;
 
+import data.DataController;
+
+import java.util.ArrayList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: steffenwitt
@@ -8,36 +12,47 @@ package app;
  * To change this template use File | Settings | File Templates.
  */
 public class TargetPractice {
-    private static TargetPractice ourInstance = new TargetPractice();
-    private int hits = 0;
-    private int roundsPlayed = 0;
-    private double hprNow;
 
-    public double getHprNow() {
-        return hprNow;
+    String activeTarget;
+    TargetHelper activeTargetHelper;
+    private ArrayList<TargetHelper> targetHelperList;
+
+    public TargetPractice() {
+        targetHelperList = new ArrayList<TargetHelper>();
     }
 
-    private double hprTotal;
+    public TargetHelper addThrow(int newhits, String s){
+        System.out.println("received:"+newhits+","+s);
+        if(activeTarget == null && activeTargetHelper == null){
+            activeTarget = s;
+            activeTargetHelper = new TargetHelper(activeTarget);
+            targetHelperList.add(activeTargetHelper);
+        }
+        if(activeTarget != s){
+            boolean targetExists = false;
+            for (TargetHelper targetHelper : targetHelperList) {
+                if (targetHelper.getTarget().equals(s)){
+                    targetExists = true;
+                    activeTarget = s;
+                    activeTargetHelper = targetHelper;
+                    break;
+                }
+            }
+            if(!targetExists){
 
-    public static TargetPractice getInstance() {
-        return ourInstance;
+                activeTarget = s;
+                activeTargetHelper = new TargetHelper(activeTarget);
+                targetHelperList.add(activeTargetHelper);
+            }
+
+        }
+        activeTargetHelper.addRound(newhits);
+        return activeTargetHelper;
+
     }
 
-    private TargetPractice() {
-    }
 
-    public void addThrow(int newhits){
-        this.hits = this.hits + newhits;
-        roundsPlayed = roundsPlayed + 1;
-        System.out.println(newhits + "/n" + hits + "/" + roundsPlayed);
-        hprNow = hits/roundsPlayed;
-    }
-
-    private int getHitsFromHistory(){
-           return 0;
-    }
-
-    private int getRoundsFromHistory(){
-               return 0;
+    public void saveGame() {
+        DataController.saveTPGame(targetHelperList);
     }
 }
