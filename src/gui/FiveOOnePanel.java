@@ -26,6 +26,7 @@ public class FiveOOnePanel {
     private JTextField firstThrowField;
     private JPanel fiveOOnePanel;
     private JPanel innerFooPanel;
+    private JLabel bigScoreLabel;
     private List<JTextField> scoreFields = new ArrayList<JTextField>();
     private List<JLabel> scoreLabels = new ArrayList<JLabel>();
     private int addIndexY= 4;
@@ -143,6 +144,8 @@ public class FiveOOnePanel {
 
         newScoreEntry.requestFocus();
         addIndexY++;
+
+        bigScoreLabel.setText(""+newRest);
 
         innerFooPanel.validate();
         innerFooPanel.repaint();

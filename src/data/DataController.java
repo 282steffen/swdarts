@@ -3,15 +3,9 @@ package data;
 import app.RTWStrategy;
 import app.TargetHelper;
 
-import java.sql.Connection;
+import java.sql.*;
 import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DataController {
 
@@ -23,7 +17,7 @@ public class DataController {
     static Connection conn = null;
     static Statement stmt;
     private static DataController instance_;
-
+    private Set<String> tpSet = new TreeSet<String>();
     private DataController() {
 	if(conn == null){
 	    conn = createConnection();
@@ -63,6 +57,7 @@ public class DataController {
         for (String rtw : rtws) {
             createRTWTable(rtw);
         }
+        createTPTable();
     }
     private void dropTable(String tablename) {
         if (conn == null) {
@@ -122,31 +117,7 @@ public class DataController {
         }
     }
 
-    private void createTargetPracticeTable(String tablename) {
-        if (conn == null) {
-            createConnection();
-            if (conn == null) {
-                return;
-            }
-        }
-        try {
-            if (conn.isClosed()) {
-                conn = createConnection();
-            }
-            Statement stmt = conn.createStatement();
-            String query = "CREATE TABLE "+tablename+" ("
-                    + "FIELDNAME VARCHAR(24) NOT NULL PRIMARY KEY, "
-                    + "HITS INTEGER, " + "ROUNDS INTEGER";
-            stmt.executeUpdate(query);
 
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32")) {
-                e.printStackTrace();
-            }
-            System.out.println(tablename + " already exists");
-
-        }
-    }
 
     public static void main(String[] args) {
 
@@ -256,8 +227,95 @@ public class DataController {
 	return stats;
     }
 
+    private void createTPTable() {
+        if (conn == null) {
+            createConnection();
+            if (conn == null) {
+                return;
+            }
+        }
+        try {
+            if (conn.isClosed()) {
+                conn = createConnection();
+            }
+            Statement stmt = conn.createStatement();
+            String query = "CREATE TABLE TargetPractice ("
+                    + "GAMEID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " + "GAMEDATE DATE, "
+                    + "ONE DOUBLE, " + "TWO DOUBLE, " + "THREE DOUBLE, "
+                    + "FOUR DOUBLE, " + "FIVE DOUBLE, " + "SIX DOUBLE, "
+                    + "SEVEN DOUBLE, " + "EIGHT DOUBLE, " + "NINE DOUBLE, "
+                    + "TEN DOUBLE, " + "ELEVEN DOUBLE, " + "TWELVE DOUBLE, "
+                    + "THIRTEEN DOUBLE, " + "FOURTEEN DOUBLE, "
+                    + "FIVETEEN DOUBLE, " + "SIXTEEN DOUBLE, "
+                    + "SEVENTEEN DOUBLE, " + "EIGHTEEN DOUBLE, "
+                    + "NINETEEN DOUBLE, " + "TWENTY DOUBLE, " + "BULL DOUBLE, CONSTRAINT primary_key PRIMARY KEY (GAMEID) "
+                    + ") ";
+            stmt.executeUpdate(query);
 
-    public static void saveTPGame(ArrayList<TargetHelper> targetHelperList) {
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32")) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+    public void saveTPGame(ArrayList<TargetHelper> targetHelperList) {
+        PreparedStatement pstmt = null;
+        tpSet.add("1");
+        tpSet.add("2");
+        tpSet.add("3");
+        tpSet.add("4");
+        tpSet.add("5");
+        tpSet.add("6");
+        tpSet.add("7");
+        tpSet.add("8");
+        tpSet.add("9");
+        tpSet.add("10");
+        tpSet.add("11");
+        tpSet.add("12");
+        tpSet.add("13");
+        tpSet.add("14");
+        tpSet.add("15");
+        tpSet.add("16");
+        tpSet.add("17");
+        tpSet.add("18");
+        tpSet.add("19");
+        tpSet.add("20");
+        tpSet.add("Bull");
+
+        try {
+            if (conn == null) {
+                conn = createConnection();
+            }
+            String query = "insert into TargetPractice " +
+                    "(GAMEDATE,ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,TEN,ELEVEN,TWELVE,THIRTEEN,FOURTEEN,FIVETEEN,SIXTEEN,SEVENTEEN,EIGHTEEN,NINETEEN,TWENTY,BULL)"
+                    + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setDate(1, new Date(System.currentTimeMillis()));
+            for (TargetHelper targetHelper : targetHelperList) {
+                 String target = targetHelper.getTarget();
+                 tpSet.remove(target);
+                 int param;
+                 param = determineParam(target);
+                 pstmt.setDouble(param,targetHelper.getHpr());
+            }
+            for (String s : tpSet) {
+                  pstmt.setNull(determineParam(s), Types.DOUBLE);
+            }
+            pstmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int determineParam(String target) {
+        if(target.equals("Bull")){
+            return 22;
+
+        }else{
+           return Integer.parseInt(target)+1;
+        }
     }
 }
 

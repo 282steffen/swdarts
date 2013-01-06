@@ -53,6 +53,13 @@ public class TargetPractice {
 
 
     public void saveGame() {
-        DataController.saveTPGame(targetHelperList);
+        DataController.getInstance().saveTPGame(targetHelperList);
+        quitGame();
+    }
+
+    private void quitGame() {
+        activeTarget = null;
+        activeTargetHelper = null;
+        targetHelperList = new ArrayList<TargetHelper>();
     }
 }
