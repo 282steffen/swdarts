@@ -94,6 +94,7 @@ public class MainFrame extends JFrame implements ActionListener {
         tabPane_.setEnabledAt(4, false);
         tabPane_.setEnabledAt(5, false);
         tabPane_.setEnabledAt(6, false);
+        tabPane_.setSelectedIndex(3);
         this.setVisible(true);
 
 
@@ -107,6 +108,7 @@ public class MainFrame extends JFrame implements ActionListener {
     public void resetFoo() {
         tabPane_.removeTabAt(3);
         tabPane_.insertTab("501",null,FiveOOnePanel.getInstance().getFooPanel(),null,3);
+        tabPane_.setSelectedIndex(3);
 
     }
 }
