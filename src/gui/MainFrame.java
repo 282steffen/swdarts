@@ -95,7 +95,10 @@ public class MainFrame extends JFrame implements ActionListener {
         tabPane_.setEnabledAt(5, false);
         tabPane_.setEnabledAt(6, false);
         tabPane_.setSelectedIndex(3);
+
         this.setVisible(true);
+        FiveOOnePanel.getInstance().getFooPanel().requestFocus();
+        FiveOOnePanel.getInstance().getFirstThrowField().requestFocus();
 
 
     }

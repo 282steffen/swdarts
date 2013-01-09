@@ -16,6 +16,9 @@ public class FiveOOneGame implements Game {
     private static int no180 = 0;
     private static int no140 = 0;
     private static int no100 = 0;
+    private static int no180bu = 0;
+    private static int no140bu = 0;
+    private static int no100bu = 0;
 
     public static int getGameCount() {
         return gameCount;
@@ -112,6 +115,9 @@ public class FiveOOneGame implements Game {
         gameCount++;
         associatedPanel.gameEnded(501/noOfThrows,nineDartAvg);
         saveGame();
+        no100bu = no100;
+        no140bu = no140;
+        no180bu = no180;
         if(associatedPanel.askForRestart()){
             associatedPanel.clear();
         }
@@ -156,7 +162,6 @@ public class FiveOOneGame implements Game {
     }
 
     private String findOneDartSolution(int diff) {
-        System.out.println("Diff"+diff);
         if(diff > 60){
             return "-";
         }else{
@@ -180,4 +185,11 @@ public class FiveOOneGame implements Game {
         return "-";
     }
 
+
+    public void reset() {
+        no100 = no100bu;
+        no140 = no140bu;
+        no180 = no180bu;
+        associatedPanel.clear();
+    }
 }

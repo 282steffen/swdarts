@@ -5,9 +5,7 @@
       <element id="module-output" name="SWDarts" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/derbytools.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/WebLookAndFeel.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jgoodies-forms-1.6.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/derby.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jgoodies-common-1.4.0.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

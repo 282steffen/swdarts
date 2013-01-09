@@ -8,10 +8,7 @@ import com.alee.managers.popup.WebPopup;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +23,8 @@ import java.util.List;
 public class FiveOOnePanel {
 
     private static FiveOOnePanel instance;
+    WebPopup wrongInputPopup = new WebPopup();
+    DecimalFormat twoDForm = new DecimalFormat("#.##");
     private JTextField firstThrowField;
     private JPanel fiveOOnePanel;
     private JPanel innerFooPanel;
@@ -40,29 +39,41 @@ public class FiveOOnePanel {
     private JLabel no100Label;
     private JLabel no140label;
     private JLabel no180label;
+    private JButton resetButton;
     private List<JTextField> scoreFields = new ArrayList<JTextField>();
     private List<JLabel> scoreLabels = new ArrayList<JLabel>();
     private int addIndexY = 4;
     private int roundIndex = 1;
     private FiveOOneGame associatedGame;
-    WebPopup wrongInputPopup = new WebPopup();
 
     private FiveOOnePanel() {
         wrongInputPopup.setSize(300, 50);
         wrongInputPopup.add(new JLabel("<html><font color='white'>Kein möglicher Wurf!</font></html>"));
         wrongInputPopup.setPopupStyle(PopupStyle.gray);
         scoreFields.add(firstThrowField);
-        no100Label.setText(""+FiveOOneGame.getNo100());
-        no140label.setText(""+FiveOOneGame.getNo140());
-        no180label.setText(""+FiveOOneGame.getNo180());
-        playCountLabel.setText(""+FiveOOneGame.getGameCount());
+        no100Label.setText("" + FiveOOneGame.getNo100());
+        no140label.setText("" + FiveOOneGame.getNo140());
+        no180label.setText("" + FiveOOneGame.getNo180());
+        playCountLabel.setText("" + FiveOOneGame.getGameCount());
         firstThrowField.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 reactToScoreField(e);
             }
         });
-        ;
+        firstThrowField.addFocusListener(new
+                                                 FocusAdapter() {
+                                                     public void focusGained(FocusEvent evt) {
+                                                         jTextFieldFocusGained(evt);
+                                                     }
+                                                 });
 
+
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                associatedGame.reset();
+            }
+        });
     }
 
     public static FiveOOnePanel getInstance() {
@@ -75,11 +86,13 @@ public class FiveOOnePanel {
 
     }
 
+    public JTextField getFirstThrowField() {
+        return firstThrowField;
+    }
+
     public JPanel getFooPanel() {
         return fiveOOnePanel;
     }
-
-
 
     private void sendThrow() {
         if (checkThrow()) {
@@ -102,18 +115,18 @@ public class FiveOOnePanel {
 
     }
 
-    public void updateStatsPanel(){
-        DecimalFormat twoDForm = new DecimalFormat("#.##");
+    public void updateStatsPanel() {
+
         tdavgLabel.setText("" + Double.valueOf(twoDForm.format(associatedGame.getThreeDartAvg())));
-        ndavgLabel.setText(""+Double.valueOf(twoDForm.format(associatedGame.getNineDartAvg())));
+        ndavgLabel.setText("" + Double.valueOf(twoDForm.format(associatedGame.getNineDartAvg())));
         fofinishLabel.setText(associatedGame.calculateFinish(40));
         ttFinishLabel.setText(associatedGame.calculateFinish(32));
         tfFinishLabel.setText(associatedGame.calculateFinish(24));
         bullFinishLabel.setText(associatedGame.calculateFinish(50));
-        no100Label.setText(""+FiveOOneGame.getNo100());
-        no140label.setText(""+FiveOOneGame.getNo140());
-        no180label.setText(""+FiveOOneGame.getNo180());
-        playCountLabel.setText(""+FiveOOneGame.getGameCount());
+        no100Label.setText("" + FiveOOneGame.getNo100());
+        no140label.setText("" + FiveOOneGame.getNo140());
+        no180label.setText("" + FiveOOneGame.getNo180());
+        playCountLabel.setText("" + FiveOOneGame.getGameCount());
     }
 
     public void updateFooPanel(int newRest) {
@@ -148,11 +161,12 @@ public class FiveOOnePanel {
                 reactToScoreField(e);
             }
         });
-        newScoreEntry.addFocusListener(new FocusAdapter() {
-            public void focusGained(FocusEvent evt) {
-                jTextFieldFocusGained(evt);
-            }
-        });
+        newScoreEntry.addFocusListener(new
+                                               FocusAdapter() {
+                                                   public void focusGained(FocusEvent evt) {
+                                                       jTextFieldFocusGained(evt);
+                                                   }
+                                               });
         innerFooPanel.add(newScoreEntry, gbc);
 
         gbc.gridx = 1;
@@ -216,7 +230,7 @@ public class FiveOOnePanel {
     }
 
     public void gameEnded(double avg, double nineDartAvg) {
-        WebOptionPane.showMessageDialog(scoreFields.get(scoreFields.size() - 1), "Spiel mit einem " + avg * 3 + " 3-Dart-Average und einem " + nineDartAvg + " 9-Dart-Avg beendet.");
+        WebOptionPane.showMessageDialog(scoreFields.get(scoreFields.size() - 1), "Spiel beendet.");
     }
 
     private void jTextFieldFocusGained(FocusEvent evt) {

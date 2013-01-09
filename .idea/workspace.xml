@@ -9,7 +9,7 @@
     <file path="$PROJECT_DIR$/src/gui/TargetPracticeGame.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357150700621" ignored="false" />
     <file path="/TargetPracticeGamePanel.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357158583110" ignored="false" />
     <file path="/Game.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357153954625" ignored="false" />
-    <file path="/MainFrame.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357575576661" ignored="false" />
+    <file path="/MainFrame.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357681167665" ignored="false" />
     <file path="/GameStartPanel.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357179772397" ignored="false" />
     <file path="$PROJECT_DIR$/src/gui/StatsPanel.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357158982857" ignored="false" />
     <file path="$PROJECT_DIR$/src/gui/StatsPanel.form" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357158982857" ignored="false" />
@@ -18,9 +18,9 @@
     <file path="/PracticeTraining.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357168395159" ignored="false" />
     <file path="/PracticeTarget.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357167514084" ignored="false" />
     <file path="/TargetPractice.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357423396512" ignored="false" />
-    <file path="/FiveOOnePanel.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357575441091" ignored="false" />
+    <file path="/FiveOOnePanel.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357641292687" ignored="false" />
     <file path="/RTWGamePanel.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357217263335" ignored="false" />
-    <file path="/FiveOOneGame.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357575044654" ignored="false" />
+    <file path="/FiveOOneGame.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357590045946" ignored="false" />
     <file path="/tpHelper.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357419227029" ignored="false" />
     <file path="/TargetHelper.java" changelist="299f2041-2abe-427b-8dcc-fc058b2d8804" time="1357418975626" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -95,10 +95,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainFrame.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainFrame.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gui/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="27" selection-start="2869" selection-end="2869" vertical-scroll-proportion="0.0">
+            <state line="100" column="72" selection-start="3012" selection-end="3012" vertical-scroll-proportion="0.77272725">
               <folding />
             </state>
           </provider>
@@ -125,11 +125,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FiveOOnePanel.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FiveOOnePanel.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/FiveOOnePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="63" selection-start="1962" selection-end="1962" vertical-scroll-proportion="0.46712804">
-              <folding />
+            <state line="68" column="0" selection-start="2519" selection-end="2519" vertical-scroll-proportion="-11.96">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1249#1261#0" expanded="true" />
+                <element signature="e#1317#1325#0" expanded="true" />
+                <element signature="e#2559#2724#0" expanded="true" />
+                <element signature="e#2713#2714#0" expanded="true" />
+                <element signature="e#3227#3236#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -175,7 +182,7 @@
       <file leaf-file-name="FiveOOneGame.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/FiveOOneGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="38" selection-start="433" selection-end="433" vertical-scroll-proportion="0.0">
+            <state line="164" column="0" selection-start="4114" selection-end="4114" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -205,15 +212,15 @@
         <option value="$PROJECT_DIR$/src/data/DataController.java" />
         <option value="$PROJECT_DIR$/src/gui/FiveOOnePanel.form" />
         <option value="$PROJECT_DIR$/src/app/FiveOOneGame.java" />
-        <option value="$PROJECT_DIR$/src/gui/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/gui/FiveOOnePanel.java" />
+        <option value="$PROJECT_DIR$/src/gui/MainFrame.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
     <option name="width" value="1680" />
-    <option name="height" value="1024" />
+    <option name="height" value="774" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -396,7 +403,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="project.structure.proportion" value="0.15" />
@@ -556,13 +563,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1680" height="1024" extended-state="0" />
+    <frame x="0" y="22" width="1680" height="774" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22888617" sideWeight="0.670354" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925338" sideWeight="0.670354" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33027524" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.6703125" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -576,7 +583,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24958813" sideWeight="0.6703125" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32964602" sideWeight="0.5354201" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45259938" sideWeight="0.5354201" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -719,25 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/FiveOOnePanel.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/FiveOOneGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="38" selection-start="433" selection-end="433" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="27" selection-start="2869" selection-end="2869" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/GameStartPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="5" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0">
@@ -745,9 +733,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/FiveOOnePanel.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/FiveOOneGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="164" column="0" selection-start="4114" selection-end="4114" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/FiveOOnePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="63" selection-start="1962" selection-end="1962" vertical-scroll-proportion="0.46712804">
+        <state line="68" column="0" selection-start="2519" selection-end="2519" vertical-scroll-proportion="-11.96">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1249#1261#0" expanded="true" />
+            <element signature="e#1317#1325#0" expanded="true" />
+            <element signature="e#2559#2724#0" expanded="true" />
+            <element signature="e#2713#2714#0" expanded="true" />
+            <element signature="e#3227#3236#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="72" selection-start="3012" selection-end="3012" vertical-scroll-proportion="0.77272725">
           <folding />
         </state>
       </provider>
